@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luke Swanson — Content Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F6F2;
+      --ink: #1A1A1A;
+      --indigo: #3D2EFF;
+      --indigo-light: #EAE8FF;
+      --mid: #6B6B6B;
+      --rule: #D8D6CF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--indigo); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 10vw, 120px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .hero-headline .accent {
+      color: var(--indigo);
+      display: block;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 48px;
+    }
+
+    .hero-bio { max-width: 440px; }
+
+    .hero-bio p {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+
+    .hero-bio p strong { font-weight: 600; }
+
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--indigo);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: #2a1fd4; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-block;
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); }
+
+    /* MARQUEE */
+    .marquee-bar {
+      background: var(--indigo);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-inner span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 40px;
+    }
+
+    .marquee-inner span.dot { color: rgba(255,255,255,0.4); padding: 0; font-size: 10px; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 100px 48px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* EXPERTISE */
+    #expertise { background: var(--ink); color: var(--cream); }
+    #expertise .section-label { color: rgba(255,255,255,0.4); }
+    #expertise .section-label::after { background: rgba(255,255,255,0.15); }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .expertise-card {
+      background: var(--ink);
+      padding: 48px 40px;
+      transition: background 0.2s;
+    }
+
+    .expertise-card:hover { background: #252525; }
+
+    .expertise-icon { font-size: 28px; margin-bottom: 20px; }
+
+    .expertise-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .expertise-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.55); }
+
+    /* WORK */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+    }
+
+    .work-card {
+      background: var(--cream);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .work-card:hover { background: #f0efe9; }
+
+    .work-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--indigo);
+    }
+
+    .work-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .work-desc { font-size: 14px; line-height: 1.65; color: var(--mid); max-width: 380px; }
+
+    .work-arrow { margin-top: auto; font-size: 22px; color: var(--indigo); transition: transform 0.2s; }
+    .work-card:hover .work-arrow { transform: translate(4px, -4px); }
+
+    /* PLACEHOLDER HIGHLIGHT */
+    .ph {
+      background: #FFF3CD;
+      color: #856404;
+      font-weight: 600;
+      font-size: 0.9em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px dashed #FFCA28;
+      font-style: normal;
+    }
+
+    /* CASE STUDIES SECTION WRAPPER */
+    .case-studies-section {
+      border-top: 1px solid var(--rule);
+    }
+
+    /* CASE STUDY NAV TABS */
+    .cs-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px;
+      background: var(--cream);
+    }
+
+    .cs-tab {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding: 20px 0;
+      margin-right: 40px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .cs-tab.active {
+      color: var(--indigo);
+      border-bottom-color: var(--indigo);
+    }
+
+    .cs-tab:hover { color: var(--indigo); }
+
+    /* CASE STUDY PANEL */
+    .cs-panel { display: none; padding: 80px 48px 100px; }
+    .cs-panel.active { display: block; }
+
+    .cs-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+      align-items: end;
+    }
+
+    .cs-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 6vw, 80px);
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+    }
+
+    .cs-headline em { font-style: normal; color: var(--indigo); }
+
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cs-meta-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .cs-meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .cs-meta-value { font-size: 15px; font-weight: 500; color: var(--ink); }
+
+    /* SCREENSHOT GALLERY */
+    .cs-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 48px 0;
+    }
+
+    .cs-gallery.two-col { grid-template-columns: 1fr 1fr; }
+    .cs-gallery.full { grid-template-columns: 1fr; }
+
+    .cs-screenshot {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--rule);
+      background: #fff;
+    }
+
+    .cs-screenshot-caption {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .cs-screenshot-wrap { display: flex; flex-direction: column; }
+
+    /* Phase blocks */
+    .cs-phases { display: flex; flex-direction: column; }
+
+    .cs-phase {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 60px;
+      padding: 60px 0;
+      border-top: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .cs-phase-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      padding-top: 4px;
+    }
+
+    .cs-phase-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .cs-phase-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      max-width: 680px;
+    }
+
+    .cs-phase-body + .cs-phase-body { margin-top: 16px; }
+
+    .cs-callout {
+      margin-top: 32px;
+      border-left: 3px solid var(--indigo);
+      padding: 20px 24px;
+      background: var(--indigo-light);
+    }
+
+    .cs-callout p { font-size: 15px; font-weight: 500; color: var(--ink); line-height: 1.6; }
+
+    .cs-outcomes {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .cs-outcome {
+      padding: 28px 24px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .cs-outcome-stat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1;
+      color: #8B7FFF;
+      margin-bottom: 8px;
+    }
+
+    .cs-outcome-stat .ph {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      background: rgba(255,243,205,0.15);
+      color: #FFE082;
+      border-color: #FFE082;
+    }
+
+    .cs-outcome-label { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.65); }
+
+    /* PUBLIC CONTEXT BLOCK */
+    .cs-context-block {
+      margin-top: 32px;
+      padding: 20px 24px;
+      border: 1.5px solid var(--rule);
+      background: var(--cream);
+    }
+
+    .cs-context-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
+
+    .cs-context-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .cs-context-body strong { color: var(--ink); }
+
+    /* ABOUT */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 7vw, 90px);
+      text-transform: uppercase;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+    }
+
+    .about-right p { font-size: 16px; line-height: 1.75; color: #333; margin-bottom: 20px; }
+
+    .tools-list { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tool-chip {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border: 1.5px solid var(--rule);
+      color: var(--ink);
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--ink);
+      color: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    #contact .section-label { color: rgba(255,255,255,0.4); }
+    #contact .section-label::after { background: rgba(255,255,255,0.15); }
+
+    .contact-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 7vw, 88px);
+      text-transform: uppercase;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .contact-headline .accent { color: #8B7FFF; }
+
+    .contact-right { display: flex; flex-direction: column; gap: 24px; }
+    .contact-right p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.6); }
+
+    .contact-links { display: flex; flex-direction: column; gap: 4px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: #fff; }
+    .contact-link-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-left: auto; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 40px; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 40px 24px 60px; }
+      section { padding: 64px 24px; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .cs-tabs { padding: 0 24px; }
+      .cs-panel { padding: 48px 24px 64px; }
+      .cs-header { grid-template-columns: 1fr; gap: 32px; }
+      .cs-phase { grid-template-columns: 1fr; gap: 12px; }
+      .cs-outcomes { grid-template-columns: 1fr; }
+      .cs-gallery { grid-template-columns: 1fr; }
+      .cs-gallery.two-col { grid-template-columns: 1fr; }
+      #about { grid-template-columns: 1fr; gap: 40px; }
+      #contact { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-inner { animation: none; }
+    }
+
+    /* IMAGE GALLERIES */
+    .cs-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 36px 0;
+    }
+    .cs-gallery.two-col { grid-template-columns: 1fr 1fr; }
+    .cs-gallery.one-col { grid-template-columns: 1fr; }
+    .cs-img-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .cs-img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--rule);
+      background: #fff;
+    }
+    .cs-img-cap {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      text-align: center;
+      line-height: 1.4;
+    }
+    @media (max-width: 900px) {
+      .cs-gallery, .cs-gallery.two-col { grid-template-columns: 1fr; }
+    }
+
+    /* IMAGE GALLERIES */
+    .cs-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 36px 0;
+    }
+    .cs-gallery.two-col { grid-template-columns: 1fr 1fr; }
+    .cs-img-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .cs-img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--rule);
+      background: #fff;
+    }
+    .cs-img-cap {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      text-align: center;
+      line-height: 1.4;
+    }
+    @media (max-width: 900px) {
+      .cs-gallery, .cs-gallery.two-col { grid-template-columns: 1fr; }
+    }
+
+    .cs-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 36px 0; }
+    .cs-gallery.two-col { grid-template-columns: 1fr 1fr; }
+    .cs-img-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .cs-img { width: 100%; display: block; border: 1px solid var(--rule); background: #fff; }
+    .cs-img-cap { font-size: 11px; color: var(--mid); letter-spacing: 0.04em; text-align: center; line-height: 1.4; }
+    @media (max-width: 900px) { .cs-gallery, .cs-gallery.two-col { grid-template-columns: 1fr; } }
+
+    .cs-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #EEECEA;
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .cs-img-placeholder span {
+      font-size: 11px;
+      color: var(--mid);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Luke Swanson</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#case-studies">Case studies</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Say hi</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Open to new roles</p>
+      <h1 class="hero-headline">
+        Content
+        <span class="accent">Designer.</span>
+      </h1>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bio">
+        <p>Hi, I'm <strong>Luke Swanson</strong>. I make complicated products feel simple.</p>
+        <p>I write the words, build the systems, and ask "does this actually make sense to a real person?" until everyone else is tired of hearing it. I've done it at Intuit, Wells Fargo, J&J, and a bunch of places in between.</p>
+        <p>Now I'm doing it all again — with AI in the mix.</p>
+        <div class="hero-cta">
+          <a href="#case-studies" class="btn-primary">See the work</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-inner">
+      <span>UX Writing</span><span class="dot">·</span>
+      <span>Content Strategy</span><span class="dot">·</span>
+      <span>Product Voice</span><span class="dot">·</span>
+      <span>User Research</span><span class="dot">·</span>
+      <span>Information Architecture</span><span class="dot">·</span>
+      <span>GenAI Content</span><span class="dot">·</span>
+      <span>Accessibility</span><span class="dot">·</span>
+      <span>Design Systems</span><span class="dot">·</span>
+      <span>UX Writing</span><span class="dot">·</span>
+      <span>Content Strategy</span><span class="dot">·</span>
+      <span>Product Voice</span><span class="dot">·</span>
+      <span>User Research</span><span class="dot">·</span>
+      <span>Information Architecture</span><span class="dot">·</span>
+      <span>GenAI Content</span><span class="dot">·</span>
+      <span>Accessibility</span><span class="dot">·</span>
+      <span>Design Systems</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- EXPERTISE -->
+  <section id="expertise">
+    <p class="section-label">What I do</p>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="expertise-icon">✦</div>
+        <h3 class="expertise-title">UX writing</h3>
+        <p class="expertise-desc">Every button, label, and error message is a decision. I make those decisions on purpose — not by accident.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">◈</div>
+        <h3 class="expertise-title">Content strategy</h3>
+        <p class="expertise-desc">I figure out what to say, to whom, and in what order. Then I build systems so the whole team can do it consistently.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">◎</div>
+        <h3 class="expertise-title">Research & testing</h3>
+        <p class="expertise-desc">I talk to real people, watch them struggle with real interfaces, and use what I learn to make things better. Repeat.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⬡</div>
+        <h3 class="expertise-title">Voice & tone</h3>
+        <p class="expertise-desc">I write the guidelines that help products sound like themselves — not like a legal document or a corporate press release.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⟁</div>
+        <h3 class="expertise-title">Accessibility</h3>
+        <p class="expertise-desc">Plain language and inclusive design aren't nice-to-haves. They're the job. I treat them that way.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⊕</div>
+        <h3 class="expertise-title">GenAI content</h3>
+        <p class="expertise-desc">I write guidance for AI features and the humans building them — so the output feels helpful, not robotic.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" style="padding-bottom: 0;">
+    <p class="section-label">Selected work</p>
+  </section>
+  <div class="work-grid">
+    <div class="work-card">
+      <span class="work-tag">Fintech · Payments · Invoicing</span>
+      <h3 class="work-title">Intuit QuickBooks</h3>
+      <p class="work-desc">Led content design end-to-end for Payments and Invoicing. From onboarding flows to AI-powered features — and everything in between.</p>
+      <span class="work-arrow">↗</span>
+    </div>
+    <div class="work-card">
+      <span class="work-tag">Finance · Accessibility</span>
+      <h3 class="work-title">Wells Fargo</h3>
+      <p class="work-desc">Led an accessibility-focused content redesign of Wells Fargo's CEO applications. Enterprise banking, made more human.</p>
+      <span class="work-arrow">↗</span>
+    </div>
+    <div class="work-card">
+      <span class="work-tag">Health tech · Research</span>
+      <h3 class="work-title">J&J Health Tech</h3>
+      <p class="work-desc">Content strategy for a two-year Apple Watch study on AFib and stroke prevention. High stakes, plain language.</p>
+      <span class="work-arrow">↗</span>
+    </div>
+    <div class="work-card">
+      <span class="work-tag">Civic tech · CMS</span>
+      <h3 class="work-title">City of Oakland</h3>
+      <p class="work-desc">Designed a services-oriented city website from research through launch — then trained city staff to keep it going.</p>
+      <span class="work-arrow">↗</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDIES -->
+  <div class="case-studies-section" id="case-studies">
+    <div class="cs-tabs">
+      <button class="cs-tab active" onclick="showCS('cs1', this)">QuickBooks Payments & Invoicing</button>
+      <button class="cs-tab" onclick="showCS('cs2', this)">GenAI Content Strategy</button>
+    </div>
+
+    <!-- ======================== CASE STUDY 1: PAYMENTS & INVOICING ======================== -->
+    <div class="cs-panel active" id="cs1">
+      <div class="cs-header">
+        <h2 class="cs-headline">QuickBooks<br /><em>Payments</em><br />&amp; Invoicing</h2>
+        <div class="cs-meta">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Senior Content Designer — end to end</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Scope</span>
+            <span class="cs-meta-value">QuickBooks Payments · Invoicing · Mailchimp integration · AI assistant</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Team</span>
+            <span class="cs-meta-value">Cross-functional: Product, Design, Research, Engineering, Legal</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Focus</span>
+            <span class="cs-meta-value">UX Writing · Content Strategy · User Research · Voice & Tone · AI features</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-phases">
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">The Challenge</span>
+          <div>
+            <h3 class="cs-phase-title">Getting paid shouldn't feel like filing taxes</h3>
+            <p class="cs-phase-body">Small business owners need to get paid. It's the whole point. But QuickBooks Payments buried that simple job under jargon, unclear choices, and flows that felt designed for accountants — not the actual people using them.</p>
+            <p class="cs-phase-body">My job: lead content design across the entire payments experience. From the moment someone signs up through their ongoing use of invoicing, AI features, and a new Mailchimp integration.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Discovery</span>
+          <div>
+            <h3 class="cs-phase-title">We watched people get confused. Then we fixed it.</h3>
+            <p class="cs-phase-body">I ran usability sessions with small business owners at every stage of the payments journey. I paid attention to where they paused, re-read, and gave up. Then I did a full content audit — 60+ screens — to map every place the language was inconsistent or unclear.</p>
+            <p class="cs-phase-body">The pattern was consistent: merchants didn't know which payment method to pick first, the verification flow felt like a legal minefield, and the invoice panel was organized for internal logic instead of how owners actually think. Six of 7 usability participants said Payments was the most important feature — but most couldn't complete setup without help.</p>
+            <div class="cs-callout">
+              <p>"I don't know which one to pick. What if I pick the wrong one and can't change it?" — Merchant, usability session on payment method selection</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Strategy</span>
+          <div>
+            <h3 class="cs-phase-title">A system, not just a rewrite</h3>
+            <p class="cs-phase-body">Instead of fixing screens one at a time, I built a content framework around where merchants were in their journey. New signup? Here's what you need to know right now — nothing else. First transaction sent? Let's acknowledge that, then tell you what's next. Each stage got targeted messaging instead of a generic blast.</p>
+            <p class="cs-phase-body">For the invoice panel, I drove a structural rethink: out with the sprawling settings panel, in with a hierarchy that puts the most-used controls first. For the AI assistant, I defined when it should speak, what it should say, and — just as important — when to stay quiet.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Execution</span>
+          <div>
+            <h3 class="cs-phase-title">In the weeds, on purpose</h3>
+            <p class="cs-phase-body">I worked in Figma alongside designers across several simultaneous workstreams: Payments onboarding, the invoice panel redesign, AI-powered suggestions, late fees, recurring payments, and a Mailchimp payment link integration.</p>
+
+            <div class="cs-gallery">
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x400/F7F6F2/1A1A1A?text=Payments+setup+flow" class="cs-screenshot" alt="QuickBooks Payments setup flow" />
+                <p class="cs-screenshot-caption">Payments setup flow — value props and TRON onboarding</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x400/F7F6F2/1A1A1A?text=AI+invoice+assistant" class="cs-screenshot" alt="Intuit Assist invoice panel" />
+                <p class="cs-screenshot-caption">Intuit Assist — AI-powered invoice panel with contextual suggestions</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x400/F7F6F2/1A1A1A?text=Late+fees+feature" class="cs-screenshot" alt="Late fees AI recommendation" />
+                <p class="cs-screenshot-caption">AI-generated late fee recommendation with merchant data context</p>
+              </div>
+            </div>
+
+            <p class="cs-phase-body">For the AI assistant, I wrote copy for every state — empty, loading, populated — and every suggestion type, from overdue invoice nudges to late fee recommendations based on a merchant's actual payment history. Each one had to feel useful, not pushy.</p>
+            <p class="cs-phase-body">For Mailchimp, I built the content model for a new payment link block inside email campaigns: the empty state, the creation modal, the payment method disclosures (written in actual English, not legal boilerplate), and the success states. That last part required a lot of back-and-forth with legal. Worth it.</p>
+
+            <div class="cs-gallery two-col">
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x400/F7F6F2/1A1A1A?text=Mailchimp+payment+link+panel" class="cs-screenshot" alt="Mailchimp payment link panel" />
+                <p class="cs-screenshot-caption">Mailchimp payment link panel — empty state and creation flow</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x400/F7F6F2/1A1A1A?text=Invoice+panel+redesign" class="cs-screenshot" alt="Invoice panel redesign" />
+                <p class="cs-screenshot-caption">Invoice panel — from fragmented legacy settings to a unified hierarchy</p>
+              </div>
+            </div>
+
+            <div class="cs-callout">
+              <p>If you can cut a word without losing meaning, cut it. That rule applied to every screen in this project.</p>
+            </div>
+
+            <div class="cs-gallery">
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Payments FTU checklist</span></div><p class="cs-img-cap">Payments onboarding — FTU setup checklist</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Intuit Assist invoice panel</span></div><p class="cs-img-cap">Intuit Assist — AI-powered invoice panel</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>AI late fee suggestion</span></div><p class="cs-img-cap">AI-generated late fee recommendation</p></div>
+            </div>
+            <div class="cs-gallery two-col">
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Mailchimp payment link panel</span></div><p class="cs-img-cap">Mailchimp — payment link panel empty state</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Create payment link modal</span></div><p class="cs-img-cap">Create a payment link — plain-language copy</p></div>
+            </div>
+            <div class="cs-gallery two-col">
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Late fee applied</span></div><p class="cs-img-cap">Late fees — applied state with AI confirmation</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Late fee settings</span></div><p class="cs-img-cap">Late fee settings — clear labels, plain language</p></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Outcomes</span>
+          <div>
+            <h3 class="cs-phase-title">Shipped. Used. Measured.</h3>
+            <p class="cs-phase-body">Content improvements went live across Payments, Invoicing, the AI assistant, and the Mailchimp integration — reaching millions of small business owners.</p>
+            <div class="cs-outcomes">
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Improvement in Payments setup completion rate after onboarding content redesign</div>
+              </div>
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Reduction in support contacts related to invoice panel navigation</div>
+              </div>
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Merchant satisfaction score improvement after AI assistant launch</div>
+              </div>
+            </div>
+
+            <div class="cs-context-block">
+              <p class="cs-context-label">↗ Product context — public data</p>
+              <p class="cs-context-body">During the period this work shipped, QuickBooks Payments saw monthly payment volume <strong>quadruple over six months</strong>, and online services revenue — driven in part by payments growth — grew <strong>21% year-over-year</strong>. (Intuit FY2024 earnings, August 2024)</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================== CASE STUDY 2: GENAI CONTENT STRATEGY ======================== -->
+    <div class="cs-panel" id="cs2">
+      <div class="cs-header">
+        <h2 class="cs-headline">GenAI<br /><em>Content</em><br />Strategy</h2>
+        <div class="cs-meta">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Content Strategy Lead — AI features & writer enablement</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Scope</span>
+            <span class="cs-meta-value">Intuit Assist · Agentic experiences · GenAI writing guidance · Team training</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Team</span>
+            <span class="cs-meta-value">Content Design org · Engineering · Product · Legal · AI/ML</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Focus</span>
+            <span class="cs-meta-value">AI voice & tone · Prompt engineering · Writer education · Content governance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-phases">
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">The Challenge</span>
+          <div>
+            <h3 class="cs-phase-title">Nobody had written the rules yet</h3>
+            <p class="cs-phase-body">Intuit was moving fast into AI — building suggestions, agents, and LLM-generated content across QuickBooks. The problem? No one had figured out how any of it should sound. Writers were making inconsistent calls. Engineers were writing prompt templates without content review. And "good AI content" meant something different to everyone.</p>
+            <p class="cs-phase-body">I built the guidance, training, and governance infrastructure from scratch. No template for this one.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Discovery</span>
+          <div>
+            <h3 class="cs-phase-title">The problem wasn't tone. It was cognitive load.</h3>
+            <p class="cs-phase-body">I audited AI-generated content across QuickBooks: invoice reminders, agentic suggestions, chat responses, proactive tips. The failures were consistent — AI was saying too much, too soon, to people who just wanted to get something done.</p>
+            <p class="cs-phase-body">I also reviewed the prompt engineering infrastructure — including the Python codebase behind invoice reminder generation — to understand where content decisions were being made in code instead of by writers.</p>
+            <div class="cs-callout">
+              <p>The biggest insight: agents shouldn't show off. They should do the work and get out of the way.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Strategy</span>
+          <div>
+            <h3 class="cs-phase-title">Principles, patterns, training — in that order</h3>
+            <p class="cs-phase-body">I structured the work in three layers. First, core principles: how agents should speak (first person where it helps, passive voice where the agent's presence would feel intrusive), what to prioritize (customer benefit, not AI capability), and what to never do (unsolicited education, exhaustive lists, detailed previews of future AI actions).</p>
+            <p class="cs-phase-body">Second, reusable content patterns for specific AI moments — welcome messages, proactive suggestions, error recovery, confirmations, disclosures. Each one came with before-and-after examples from real product copy.</p>
+            <p class="cs-phase-body">Third, training materials the whole org could actually use. Visual, concrete, short enough to read in a sitting. Because guidance nobody reads doesn't help anyone.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Execution</span>
+          <div>
+            <h3 class="cs-phase-title">From Google Doc to living standard</h3>
+            <p class="cs-phase-body">The core document — "Content for GBSG Intuit Assist and agentic experiences" — became the canonical reference for AI content across the Payments and Invoicing team. Voice principles, cognitive load rules, disclosure patterns, and a clear line between "speak" and "stay quiet."</p>
+
+            <div class="cs-gallery two-col">
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/700x450/F7F6F2/1A1A1A?text=Agentic+content+principles+doc" class="cs-screenshot" alt="Content for Intuit Assist guidance doc" />
+                <p class="cs-screenshot-caption">Core principles doc — voice, cognitive load, and agentic content rules</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/700x450/F7F6F2/1A1A1A?text=Worth+the+space+framework" class="cs-screenshot" alt="Worth the space content framework" />
+                <p class="cs-screenshot-caption">"Worth the space" framework — what agents should and shouldn't say</p>
+              </div>
+            </div>
+
+            <p class="cs-phase-body">The training slides were designed to be immediately useful: sentence case rules, "worth the space" frameworks for what AI should say, and before/after examples grounded in content people had actually shipped. No hypotheticals.</p>
+
+            <div class="cs-gallery">
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x380/F7F6F2/1A1A1A?text=Sentence+case+slide" class="cs-screenshot" alt="Sentence case training slide" />
+                <p class="cs-screenshot-caption">Sentence case training — visual-first, immediately applicable</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x380/F7F6F2/1A1A1A?text=Correct+vs+Incorrect+examples" class="cs-screenshot" alt="Correct vs incorrect copy examples" />
+                <p class="cs-screenshot-caption">Before/after examples — grounded in real product copy, not hypotheticals</p>
+              </div>
+              <div class="cs-screenshot-wrap">
+                <img src="https://placehold.co/600x380/F7F6F2/1A1A1A?text=Agentic+voice+principles" class="cs-screenshot" alt="Agentic voice principles" />
+                <p class="cs-screenshot-caption">Agentic voice — first-person rules and cognitive load principles</p>
+              </div>
+            </div>
+
+            <p class="cs-phase-body">I also worked directly with engineering to embed content review into the prompt engineering workflow — reviewing and rewriting LLM prompt templates for the invoice reminder system, which generates personalized payment request emails at scale.</p>
+
+            <div class="cs-callout">
+              <p>Key principle: "Stay focused on the task at hand and customer benefit. But if you find yourself reaching for a pronoun, use 'I' to represent an agentic voice." — from the core principles doc</p>
+            </div>
+
+            <div class="cs-gallery two-col">
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Content principles doc</span></div><p class="cs-img-cap">Core principles doc — agentic voice and cognitive load rules</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Worth the space framework</span></div><p class="cs-img-cap">“Worth the space” framework — what agents should say</p></div>
+            </div>
+            <div class="cs-gallery">
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Sentence case training</span></div><p class="cs-img-cap">Sentence case — training slide</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Correct vs incorrect</span></div><p class="cs-img-cap">Before/after — real product copy</p></div>
+              <div class="cs-img-wrap"><div class="cs-img-placeholder"><span>Panel rationale</span></div><p class="cs-img-cap">Panel UI rationale — from legacy to unified</p></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <span class="cs-phase-label">Outcomes</span>
+          <div>
+            <h3 class="cs-phase-title">A team that can write for AI — not just react to it</h3>
+            <p class="cs-phase-body">Writers and PMs across the org now have shared principles and language. Fewer one-off debates, faster reviews, better content at launch instead of after.</p>
+            <div class="cs-outcomes">
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Writers and PMs trained on GenAI content principles across the org</div>
+              </div>
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Prompt templates reviewed and rewritten with content-led guidelines</div>
+              </div>
+              <div class="cs-outcome">
+                <div class="cs-outcome-stat"><span class="ph">(placeholder)</span></div>
+                <div class="cs-outcome-label">Reduction in AI content revision cycles after guidance adoption</div>
+              </div>
+            </div>
+
+            <div class="cs-context-block">
+              <p class="cs-context-label">↗ Product context — public data</p>
+              <p class="cs-context-body">The AI features this work supported have driven significant outcomes at scale. The Intuit Payments Agent now gets businesses paid an average of <strong>5 days faster</strong>. <strong>74% of Intuit Assist customers</strong> say the AI gives them a better picture of their business's financial health — and customers save an average of <strong>6 hours per month</strong> with Intuit AI. (Intuit, November 2024 &amp; December 2025 customer surveys)</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div>
+      <h2 class="about-headline">I care<br />about the<br />details.</h2>
+    </div>
+    <div class="about-right">
+      <p>I've been a content designer for over a decade. Fintech, health tech, civic tech, consumer products — I've worked across a lot of industries, but the job is always the same: make it clear, make it useful, make it human.</p>
+      <p>I lead with research and prototype with words. I like being in the room when decisions get made, because that's when content actually has a chance to shape the product — not just describe it.</p>
+      <p>I also founded Tripty Project, a sustainable fashion brand based in Bangladesh. It taught me more about systems thinking and user needs than I expected. Turns out a lot of the same skills apply.</p>
+      <div class="tools-list">
+        <span class="tool-chip">Figma</span>
+        <span class="tool-chip">FigJam</span>
+        <span class="tool-chip">Writer AI</span>
+        <span class="tool-chip">UserTesting</span>
+        <span class="tool-chip">Google Suite</span>
+        <span class="tool-chip">Dovetail</span>
+        <span class="tool-chip">Notion</span>
+        <span class="tool-chip">Contentful</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div>
+      <p class="section-label">Get in touch</p>
+      <h2 class="contact-headline">Let's<br />work<br /><span class="accent">together.</span></h2>
+    </div>
+    <div class="contact-right">
+      <p>I'm looking for content design roles where I can do work I love with people who care about it too. If that sounds like your team, let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:lukekswanson@gmail.com" class="contact-link">
+          lukekswanson@gmail.com
+          <span class="contact-link-label">Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/lukekswanson" target="_blank" class="contact-link">
+          linkedin.com/in/lukekswanson
+          <span class="contact-link-label">LinkedIn</span>
+        </a>
+        <a href="http://www.dribbble.com/lukekswanson" target="_blank" class="contact-link">
+          dribbble.com/lukekswanson
+          <span class="contact-link-label">Dribbble</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Luke Swanson</span>
+    <span>Content designer · Berkeley, CA</span>
+  </footer>
+
+  <script>
+    function showCS(id, btn) {
+      document.querySelectorAll('.cs-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.cs-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
